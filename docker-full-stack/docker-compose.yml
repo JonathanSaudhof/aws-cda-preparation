@@ -1,0 +1,31 @@
+version: "3.6"
+services:
+  database:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    volumes:
+      - "/Users/jonathansaudhof/data:/data/db"
+    ports:
+      - 27017:27017
+  backend:
+    build: ./backend
+    image: backend
+    container_name: backend
+    ports:
+      - 3000:3000
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/node-express-mongodb-server
+    depends_on:
+      - database
+  frontend:
+    build: ./frontend
+    image: frontend
+    container_name: frontend
+    ports:
+      - 80:8080
+    environment:
+      - BACKEND_URI=http://backend:3000/todo
+    depends_on:
+      - backend
+    stdin_open: true
