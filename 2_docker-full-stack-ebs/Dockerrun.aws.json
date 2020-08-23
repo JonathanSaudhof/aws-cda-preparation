@@ -1,0 +1,62 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "mongodb",
+      "host": {
+        "sourcePath": "/var/app/current/mongodb/data/db"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "database",
+      "image": "mongo:latest",
+      "essential": true,
+      "memory": 128,
+      "mountPoints": [
+        {
+          "sourceVolume": "mongodb",
+          "containerPath": "/data/db"
+        }
+      ]
+    },
+    {
+      "name": "backend",
+      "image": "jonathansaudhof/aws-cda-backend",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 3000,
+          "containerPort": 3000
+        }
+      ],
+      "links": ["database"],
+      "environment": [
+        {
+          "name": "MONGODB_URI",
+          "value": "mongodb://database:27017/node-express-mongodb-server"
+        }
+      ]
+    },
+    {
+      "name": "frontend",
+      "image": "jonathansaudhof/aws-cda-frontend",
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["backend"],
+      "environment": [
+        {
+          "name": "BACKEND_URI",
+          "value": "http://backend:3000/todo"
+        }
+      ]
+    }
+  ]
+}
