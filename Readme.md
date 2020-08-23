@@ -17,6 +17,10 @@ https://www.youtube.com/watch?v=fqMOX6JJhGo&t=3377s
 
 The tutorial does not explain how to deploy on EB using multiple containers as you are used to do with docker compose. So I tryed it on my own.
 
+**Preparation:**
+First I had to build docker images for my given app, and push them to my docker hub. Than I was ready to link those images in
+the Dockerrun.aws.json.
+
 1. `eb init` (Create a new docker app with multicontainer support).
 2. add Dockerrun.aws.json to the folder `touch Dockerrun.aws.json`.
 3. I need to use an environment name `eb use my-env`.
