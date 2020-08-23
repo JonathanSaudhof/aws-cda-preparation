@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: darkolivegreen;
+}
+h1 {
+  color: white;
+}
+.App {
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+form {
+  display: flex;
+  background-color: darkgray;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+form input {
+  padding: 5px;
+}
+input[type="text"] {
+  flex: 1 1 85%;
+  margin-right: 10px;
+}
+input[type="submit"] {
+  flex: 1 1 15%;
+}
+.todo-container {
+  margin: auto;
+  width: 450px;
+  background-color: gray;
+  padding: 15px;
+}
+.todo-item-label input[type="checkbox"] {
+  margin-right: 15px;
+}
+
+.todo-item-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: lightgray;
+  margin-bottom: 10px;
+  padding: 10px;
+}
