@@ -26,3 +26,11 @@ the Dockerrun.aws.json.
 3. I need to use an environment name `eb use my-env`.
 4. `eb create --single` create the instance and wait that it finished loading.
 5. Access it with the ip or the given dns.
+
+## 3 Docker Full Stack App @ ECS using EC2 instances
+
+The deployment on ECS using EC2 instances is compareable to the eb deployment (see 2).
+In contrast you need to define a task definition json file to configure the
+service running in the cluster. (like you do for docker-compose)
+
+For the fullstack app you can use my task definition file.
